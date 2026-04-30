@@ -55,6 +55,28 @@ Integrován přes CSS `::after` pseudo-element:
 `photo/photo-sky-background.jpg` — `background-attachment: fixed`, pokrývá celou stránku.
 Komponenty (glass panely) kloužou přes fixní oblohu.
 
+## Lišta aktualit (top bar)
+
+Výška 36 px, pozadí `#001220`, border-bottom `rgba(0,95,128,0.28)`.
+
+**Struktura zleva doprava:**
+1. **Label „Aktuality"** — třída `.label-up-w` (cyan, 0.67rem, letter-spacing 0.18em, uppercase), flex-shrink:0
+2. **Separátor** — 1px × 14px, `rgba(0,150,200,0.35)`
+3. **Scrollující novinka** — jedna zpráva jako `<a href="..." class="ticker-link">`, zduplikovaná pro bezešvou smyčku (`translateX(-50%)`), animace 14 s linear infinite, fade na krajích přes `mask-image` (gradient transparent→black)
+4. **Separátor** — 1px × 14px, `rgba(0,150,200,0.25)`
+5. **Telefon** — SVG ikona + číslo, `<a href="tel:...">`, flex-shrink:0
+6. **Separátor** — 1px × 14px, `rgba(0,150,200,0.25)`, skrytý pod `sm` (`hidden sm:block`)
+7. **Email** — SVG ikona + adresa, `<a href="mailto:...">`, skrytý pod `sm` (`hidden sm:flex`)
+
+**CSS třídy:**
+```css
+.ticker-wrap  { overflow:hidden; mask-image: fade-okraje; }
+.ticker-track { display:inline-flex; gap:8rem; animation: tick 14s linear infinite; }
+.ticker-track:hover { animation-play-state: paused; }   /* umožní klik */
+.ticker-link  { color:rgba(255,255,255,0.60); text-decoration:none; transition:color 0.2s; }
+.ticker-link:hover { color:#00CFEF; }
+```
+
 ## Stack
 - Tailwind CSS v4 Browser CDN (`@tailwindcss/browser@4`)
 - AOS.js (scroll animace, CDN)
