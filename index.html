@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aero Academy | Pilotní výcvik Praha Letňany</title>
+
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css"/>
+
+    <style type="text/css">
+        /* ── FONTY ─────────────────────────────────────────── */
+        @font-face { font-family:'NouvelR'; src:url('font-nouvel-r/NouvelRLight.ttf')     format('truetype'); font-weight:300; }
+        @font-face { font-family:'NouvelR'; src:url('font-nouvel-r/NouvelRBook.ttf')      format('truetype'); font-weight:350; }
+        @font-face { font-family:'NouvelR'; src:url('font-nouvel-r/NouvelRRegular.ttf')   format('truetype'); font-weight:400; }
+        @font-face { font-family:'NouvelR'; src:url('font-nouvel-r/NouvelRSemibold.ttf')  format('truetype'); font-weight:600; }
+        @font-face { font-family:'NouvelR'; src:url('font-nouvel-r/NouvelRBold.ttf')      format('truetype'); font-weight:700; }
+        @font-face { font-family:'NouvelR'; src:url('font-nouvel-r/NouvelRExtrabold.ttf') format('truetype'); font-weight:800; }
+
+        @theme {
+            --font-sans: "NouvelR", ui-sans-serif, system-ui;
+        }
+
+        /* ── GLOBAL BASE ────────────────────────────────────── */
+        @layer base {
+            *, *::before, *::after { box-sizing: border-box; }
+            html  { font-size:16px; scroll-behavior:smooth; }
+            body  { font-family:"NouvelR",sans-serif; color:#001a2c; background:#001a2c; overflow-x:hidden; }
+            *     { position:relative; }
+        }
+
+        /* ── FIXNÍ OBLOHA ───────────────────────────────────── */
+        .sky-bg {
+            background-image: url('photo/photo-sky-background.jpg');
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center top;
+        }
+
+        /* ── GLASSMORPHISM ──────────────────────────────────── */
+        .glass {
+            background: rgba(224,241,252,0.48);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid rgba(255,255,255,0.72);
+        }
+        .glass-strong {
+            background: rgba(210,233,250,0.58);
+            backdrop-filter: blur(28px);
+            -webkit-backdrop-filter: blur(28px);
+            border: 1px solid rgba(255,255,255,0.78);
+        }
+        .glass-light {
+            background: rgba(255,255,255,0.35);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.65);
+        }
+        .glass-adriatic {
+            background: rgba(0,95,128,0.15);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(0,150,200,0.30);
+        }
+        .glass-nav {
+            background: rgba(255,255,255,0.82);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-bottom: 1px solid rgba(255,255,255,0.88);
+            box-shadow: 0 1px 0 rgba(0,95,128,0.06), 0 4px 20px rgba(0,26,44,0.05);
+        }
+
+        /* ── BRISTELL WATERMARK ─────────────────────────────── */
+        /* Světlé panely — modrozelená patina na skle */
+        .bw::after {
+            content:'';
+            position:absolute;
+            right:-20px; bottom:-20px;
+            width:270px; height:212px;
+            background-image: url('graphic-elements/bristell-vector/Bristell-vector.svg');
+            background-repeat:no-repeat;
+            background-size:contain;
+            background-position:right bottom;
+            opacity:0.07;
+            mix-blend-mode:multiply;
+            pointer-events:none;
+            z-index:0;
+        }
+        /* XL varianta */
+        .bw-xl::after {
+            width:400px; height:315px;
+            right:-36px; bottom:-36px;
+        }
+        /* Tmavé panely — bílý odlesk */
+        .bw-light::after {
+            filter:brightness(0) invert(1);
+            opacity:0.14;
+            mix-blend-mode:normal;
+        }
+
+        /* ── ZL BANNER ──────────────────────────────────────── */
+        .zl-banner {
+            background: linear-gradient(145deg, #001220 0%, #003148 55%, #005f80 100%);
+            border: 1px solid rgba(0,150,200,0.35);
+            overflow:hidden;
+        }
+        .zl-banner::after {
+            content:'';
+            position:absolute;
+            right:-28px; bottom:-28px;
+            width:340px; height:268px;
+            background-image: url('graphic-elements/bristell-vector/Bristell-vector.svg');
+            background-repeat:no-repeat;
+            background-size:contain;
+            background-position:right bottom;
+            filter:brightness(0) invert(1);
+            opacity:0.13;
+            pointer-events:none;
+        }
+
+        /* ── NAVIGACE ───────────────────────────────────────── */
+        .nav-link {
+            font-size:0.875rem;
+            font-weight:400;
+            color:rgba(0,26,44,0.70);
+            padding:0.5rem 0.875rem;
+            border-radius:4px;
+            white-space:nowrap;
+            text-decoration:none;
+            transition:color 0.2s, background 0.2s;
+        }
+        .nav-link:hover { color:#005f80; background:rgba(0,95,128,0.06); }
+
+        /* ── TLAČÍTKA ───────────────────────────────────────── */
+        .btn-cta {
+            background:#00CFEF;
+            color:#001a2c;
+            font-family:"NouvelR",sans-serif;
+            font-weight:700;
+            font-size:0.8rem;
+            letter-spacing:0.06em;
+            text-transform:uppercase;
+            padding:0.875rem 1.75rem;
+            display:inline-flex;
+            align-items:center;
+            gap:0.5rem;
+            text-decoration:none;
+            white-space:nowrap;
+            transition:background 0.2s, transform 0.2s, box-shadow 0.2s;
+            cursor:pointer;
+            border:none;
+        }
+        .btn-cta:hover {
+            background:#00b6d4;
+            transform:translateY(-2px);
+            box-shadow:0 8px 28px rgba(0,207,239,0.32);
+        }
+        .btn-ghost {
+            background:transparent;
+            color:white;
+            font-family:"NouvelR",sans-serif;
+            font-weight:600;
+            font-size:0.8rem;
+            letter-spacing:0.06em;
+            text-transform:uppercase;
+            padding:0.875rem 1.75rem;
+            border:1.5px solid rgba(255,255,255,0.65);
+            display:inline-flex;
+            align-items:center;
+            gap:0.5rem;
+            text-decoration:none;
+            transition:background 0.2s, border-color 0.2s;
+            cursor:pointer;
+        }
+        .btn-ghost:hover { background:rgba(255,255,255,0.12); border-color:white; }
+        .btn-adriatic {
+            background:#005f80;
+            color:white;
+            font-family:"NouvelR",sans-serif;
+            font-weight:700;
+            font-size:0.8rem;
+            letter-spacing:0.06em;
+            text-transform:uppercase;
+            padding:0.875rem 1.75rem;
+            display:inline-flex;
+            align-items:center;
+            gap:0.5rem;
+            text-decoration:none;
+            transition:background 0.2s, transform 0.2s;
+            cursor:pointer;
+            border:none;
+        }
+        .btn-adriatic:hover { background:#004860; transform:translateY(-2px); }
+
+        /* ── TYPOGRAFIE ─────────────────────────────────────── */
+        .label-up   { font-size:0.67rem; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#005f80; }
+        .label-up-w { font-size:0.67rem; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#00CFEF; }
+
+        .sec-title {
+            font-size:clamp(1.6rem,3vw,2.1rem);
+            font-weight:800;
+            color:#001a2c;
+            line-height:1.08;
+            letter-spacing:-0.025em;
+        }
+        .body-p  { color:rgba(0,26,44,0.72); line-height:1.68; }
+        .body-s  { color:rgba(0,26,44,0.52); font-size:0.875rem; line-height:1.62; }
+        .body-xs { color:rgba(0,26,44,0.42); font-size:0.75rem; line-height:1.5; }
+
+        /* ── CHIPS ──────────────────────────────────────────── */
+        .chip {
+            background:rgba(0,26,44,0.06);
+            border:1px solid rgba(0,26,44,0.13);
+            color:rgba(0,26,44,0.68);
+            font-size:0.72rem;
+            font-weight:500;
+            padding:0.22rem 0.7rem;
+            border-radius:100px;
+            display:inline-block;
+            letter-spacing:0.01em;
+        }
+        .chip-a {
+            background:rgba(0,95,128,0.09);
+            border:1px solid rgba(0,95,128,0.20);
+            color:#005f80;
+        }
+
+        /* ── CONTAINER ──────────────────────────────────────── */
+        .shell {
+            width:calc(100% - 3rem);
+            margin-left:auto;
+            margin-right:auto;
+            max-width:76rem;
+        }
+        @media(min-width:1024px){ .shell { width:calc(100% - 5rem); } }
+
+        /* ── HERO ───────────────────────────────────────────── */
+        .hero-h1 {
+            font-size:clamp(2.8rem,7.5vw,5.8rem);
+            font-weight:800;
+            color:white;
+            line-height:0.97;
+            letter-spacing:-0.03em;
+        }
+        .hero-sub {
+            font-size:clamp(1rem,2vw,1.35rem);
+            font-weight:300;
+            color:rgba(255,255,255,0.82);
+            line-height:1.45;
+        }
+
+        /* ── STATISTIKY ─────────────────────────────────────── */
+        .stat-num   { font-size:2rem; font-weight:800; color:white; line-height:1; letter-spacing:-0.03em; }
+        .stat-lbl   { font-size:0.65rem; font-weight:400; color:rgba(255,255,255,0.55); letter-spacing:0.08em; text-transform:uppercase; margin-top:0.2rem; }
+        .stat-item  { border-right:1px solid rgba(255,255,255,0.18); padding:1.1rem 1.75rem; }
+        .stat-item:first-child { padding-left:1.25rem; }
+        .stat-item:last-child  { border-right:none; }
+
+        /* ── PROGRAM CARDS ──────────────────────────────────── */
+        .prog-card {
+            overflow:hidden;
+            transition:transform 0.25s ease, box-shadow 0.25s ease;
+        }
+        .prog-card:hover {
+            transform:translateY(-6px);
+            box-shadow:0 24px 60px rgba(0,95,128,0.22);
+        }
+        .prog-card::after {
+            content:'';
+            position:absolute;
+            right:-8px; bottom:-8px;
+            width:110px; height:87px;
+            background-image:url('graphic-elements/bristell-vector/Bristell-vector.svg');
+            background-repeat:no-repeat;
+            background-size:contain;
+            background-position:right bottom;
+            opacity:0.055;
+            mix-blend-mode:multiply;
+            pointer-events:none;
+            transition:opacity 0.25s;
+        }
+        .prog-card:hover::after { opacity:0.10; }
+
+        /* ── FEATURES ───────────────────────────────────────── */
+        .feat-icon {
+            width:46px; height:46px;
+            background:rgba(0,95,128,0.09);
+            border:1px solid rgba(0,95,128,0.18);
+            display:flex; align-items:center; justify-content:center;
+            flex-shrink:0;
+        }
+
+        /* ── MAGAZÍN ────────────────────────────────────────── */
+        .mag-row {
+            border-bottom:1px solid rgba(0,26,44,0.08);
+            padding:0.875rem 0;
+            text-decoration:none;
+            display:block;
+            transition:padding-left 0.18s;
+        }
+        .mag-row:first-child { padding-top:0; }
+        .mag-row:last-child  { border-bottom:none; padding-bottom:0; }
+        .mag-row:hover       { padding-left:0.5rem; }
+
+        /* ── TICKER ─────────────────────────────────────────── */
+        .ticker-wrap { overflow:hidden; flex:1; }
+        .ticker-track {
+            display:flex; gap:3rem; white-space:nowrap;
+            animation:tick 28s linear infinite;
+        }
+        .ticker-track:hover { animation-play-state:paused; }
+        @keyframes tick { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+        /* ── SCROLL CUE ─────────────────────────────────────── */
+        .scroll-cue { animation:cue 2.2s ease-in-out infinite; }
+        @keyframes cue { 0%,100%{transform:translateY(0)} 50%{transform:translateY(7px)} }
+
+        /* ── HOVER LINK ─────────────────────────────────────── */
+        .hl { color:rgba(0,26,44,0.80); text-decoration:none; transition:color 0.2s; }
+        .hl:hover { color:#005f80; }
+    </style>
+</head>
+
+<body>
+<div class="sky-bg">
+
+<!-- ══════════════════════════════════════════
+     TOP INFO BAR
+══════════════════════════════════════════ -->
+<div style="background:#001220;height:36px;display:flex;align-items:center;border-bottom:1px solid rgba(0,95,128,0.28);overflow:hidden;">
+    <div class="shell flex items-center gap-3 w-full" style="height:36px;">
+        <span class="label-up-w" style="flex-shrink:0;">Novinky</span>
+        <span style="width:1px;height:16px;background:rgba(0,150,200,0.35);flex-shrink:0;"></span>
+        <div class="ticker-wrap">
+            <div class="ticker-track" style="color:rgba(255,255,255,0.58);font-size:0.775rem;">
+                <span>Nový Bristell LSA ve flotile — nejnovější typ dostupný od dubna&nbsp;2026</span>
+                <span style="color:rgba(0,207,239,0.4);">·</span>
+                <span>Zkušební let s instruktorem — rezervujte online i na poslední&nbsp;chvíli</span>
+                <span style="color:rgba(0,207,239,0.4);">·</span>
+                <span>Výcvik PPL(A) — zahájení nové skupiny. Kontaktujte nás ještě&nbsp;dnes.</span>
+                <span style="color:rgba(0,207,239,0.4);">·</span>
+                <span>Nový Bristell LSA ve flotile — nejnovější typ dostupný od dubna&nbsp;2026</span>
+                <span style="color:rgba(0,207,239,0.4);">·</span>
+                <span>Zkušební let s instruktorem — rezervujte online i na poslední&nbsp;chvíli</span>
+                <span style="color:rgba(0,207,239,0.4);">·</span>
+                <span>Výcvik PPL(A) — zahájení nové skupiny. Kontaktujte nás ještě&nbsp;dnes.</span>
+            </div>
+        </div>
+        <a href="tel:+420607077373" style="flex-shrink:0;color:rgba(255,255,255,0.55);font-size:0.72rem;text-decoration:none;display:flex;align-items:center;gap:0.375rem;transition:color 0.2s;" onmouseover="this.style.color='#00CFEF'" onmouseout="this.style.color='rgba(255,255,255,0.55)'">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.07 13 19.79 19.79 0 0 1 1 4.18 2 2 0 0 1 2.96 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 17z"/></svg>
+            +420&nbsp;607&nbsp;077&nbsp;373
+        </a>
+    </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     STICKY HEADER
+══════════════════════════════════════════ -->
+<header class="glass-nav sticky top-0 z-50">
+    <div class="shell flex items-center justify-between gap-6" style="height:76px;">
+
+        <a href="#" style="text-decoration:none;flex-shrink:0;">
+            <img src="logo/Aero_Academy-logo-text_black.png" alt="Aero Academy" style="height:26px;width:auto;"/>
+        </a>
+
+        <nav class="hidden lg:flex items-center gap-0.5">
+            <a href="#vycviky"  class="nav-link">Výcviky</a>
+            <a href="#flotila"  class="nav-link">Flotila</a>
+            <a href="#tym"      class="nav-link">Náš tým</a>
+            <a href="#magazin"  class="nav-link">Magazín</a>
+            <a href="#kontakt"  class="nav-link">Kontakt</a>
+        </nav>
+
+        <div class="flex items-center gap-3">
+            <a href="tel:+420607077373" class="hidden md:flex items-center gap-1.5 nav-link" style="font-size:0.78rem;color:rgba(0,26,44,0.45);">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.07 13 19.79 19.79 0 0 1 1 4.18 2 2 0 0 1 2.96 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 17z"/></svg>
+                +420 607 077 373
+            </a>
+            <a href="#zl" class="btn-cta">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                Zkušební let
+            </a>
+            <!-- Mobile hamburger -->
+            <button onclick="document.getElementById('mob-nav').classList.toggle('hidden')" class="lg:hidden p-2 flex flex-col gap-1.5" aria-label="Menu" style="background:none;border:none;cursor:pointer;">
+                <span style="display:block;width:22px;height:2px;background:#001a2c;border-radius:1px;"></span>
+                <span style="display:block;width:22px;height:2px;background:#001a2c;border-radius:1px;"></span>
+                <span style="display:block;width:15px;height:2px;background:#001a2c;border-radius:1px;"></span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Mobile nav -->
+    <div id="mob-nav" class="hidden lg:hidden glass" style="border-top:1px solid rgba(255,255,255,0.55);">
+        <div class="shell py-3 flex flex-col gap-0.5">
+            <a href="#vycviky" class="nav-link">Výcviky</a>
+            <a href="#flotila" class="nav-link">Flotila</a>
+            <a href="#tym"     class="nav-link">Náš tým</a>
+            <a href="#magazin" class="nav-link">Magazín</a>
+            <a href="#kontakt" class="nav-link">Kontakt</a>
+        </div>
+    </div>
+</header>
+
+<!-- ══════════════════════════════════════════
+     HERO — 100VH
+══════════════════════════════════════════ -->
+<section style="min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;">
+
+    <!-- tmavý gradient zdola pro čitelnost -->
+    <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,8,16,0.08) 0%,rgba(0,8,16,0.04) 35%,rgba(0,8,16,0.50) 72%,rgba(0,8,16,0.72) 100%);z-index:1;"></div>
+
+    <div class="shell pb-14" style="z-index:2;">
+
+        <!-- Logo velké -->
+        <div class="mb-8" data-aos="fade-up" data-aos-duration="900">
+            <img src="logo/Aero_Academy-logo-final.png" alt="Aero Academy" style="height:68px;width:auto;filter:brightness(0) invert(1);"/>
+        </div>
+
+        <!-- Overline -->
+        <div class="mb-5" data-aos="fade-up" data-aos-delay="80">
+            <span class="label-up-w">Pilotní výcvik · Praha Letňany · od&nbsp;2018</span>
+        </div>
+
+        <!-- Headline -->
+        <h1 class="hero-h1 mb-5" data-aos="fade-up" data-aos-delay="160" style="max-width:780px;">
+            Létat je jednodušší,<br>než sis kdy myslel.
+        </h1>
+
+        <!-- Subline -->
+        <p class="hero-sub mb-10" data-aos="fade-up" data-aos-delay="240" style="max-width:500px;">
+            Pilotní průkaz je dostupný jako řidičák.<br>Začni zkušebním letem — nic tě nezavazuje.
+        </p>
+
+        <!-- CTA tlačítka -->
+        <div class="flex flex-wrap gap-4 mb-14" data-aos="fade-up" data-aos-delay="320">
+            <a href="#zl" class="btn-cta">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                Rezervovat zkušební let
+            </a>
+            <a href="#vycviky" class="btn-ghost">
+                Prozkoumat výcviky
+            </a>
+        </div>
+
+        <!-- Statistiky panel -->
+        <div class="glass-light inline-flex flex-wrap" data-aos="fade-up" data-aos-delay="400" style="border-radius:3px;">
+            <div class="stat-item">
+                <div class="stat-num">160<span style="font-size:1.2rem;font-weight:700;opacity:0.7;">+</span></div>
+                <div class="stat-lbl">Absolventů</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-num">8</div>
+                <div class="stat-lbl">Letadel ve flotile</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-num">4</div>
+                <div class="stat-lbl">Typy průkazů</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-num" style="font-size:1.5rem;">LKŇ</div>
+                <div class="stat-lbl">Praha Letňany</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scroll indikátor -->
+    <div class="scroll-cue" style="position:absolute;bottom:1.75rem;right:2.25rem;z-index:2;display:flex;flex-direction:column;align-items:center;gap:0.3rem;">
+        <span style="font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.38);">Scroll</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.38)" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+    </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     MAIN CONTENT
+══════════════════════════════════════════ -->
+<div style="padding:4rem 0 5rem;">
+    <div class="shell">
+        <div class="grid grid-cols-12 gap-8 items-start">
+
+            <!-- ── LEFT 8 COL ── -->
+            <main class="col-span-12 lg:col-span-8 flex flex-col gap-8">
+
+                <!-- ① ÚVOD -->
+                <section class="glass bw bw-xl" style="padding:2.5rem;border-radius:3px;overflow:hidden;" data-aos="fade-up" id="o-nas">
+                    <div style="z-index:1;">
+                        <span class="label-up">Kdo jsme</span>
+                        <h2 class="sec-title mt-3 mb-5" style="max-width:440px;">
+                            Piloti z Letňan,<br>kteří žijí létáním.
+                        </h2>
+                        <p class="body-p mb-4" style="max-width:520px;">
+                            Nejsme anonymní škola. Jsme parta zkušených pilotů se stovkami hodin v kokpitech, kteří si vzali za cíl ukázat, že létat dokáže každý. Výcvik vedeme osobně — bez zbytečné byrokracie, s upřímnou radostí ze sdíleného nebe.
+                        </p>
+                        <p class="body-p mb-8" style="max-width:520px;">
+                            Přijdeš na Letňany. Vše vysvětlíme. Sedneš do letadla, vezmeš řízení do ruky a uvidíš Prahu z výšky. U nás létá přes&nbsp;160 pilotů — mnozí začínali úplně stejně jako ty.
+                        </p>
+
+                        <!-- Fotografie týmu -->
+                        <div style="height:220px;border-radius:2px;overflow:hidden;margin-bottom:1.5rem;">
+                            <img src="photo/photo-people.jpg" alt="Tým Aero Academy" style="width:100%;height:100%;object-fit:cover;"/>
+                            <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,26,44,0.42) 0%,transparent 55%);"></div>
+                            <div style="position:absolute;bottom:0.875rem;left:1.125rem;">
+                                <span style="color:white;font-size:0.72rem;font-weight:500;letter-spacing:0.03em;">Lukáš Vychodil &amp; Radek Sekyra — zakladatelé &amp; instruktoři</span>
+                            </div>
+                        </div>
+
+                        <div style="display:flex;flex-wrap:wrap;gap:0.5rem;">
+                            <span class="chip chip-a">Letňany od 2018</span>
+                            <span class="chip chip-a">Výcvik dle EASA</span>
+                            <span class="chip chip-a">Záchranný padák na palubě</span>
+                            <span class="chip chip-a">Autopilot standard</span>
+                            <span class="chip chip-a">Skleněný kokpit</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ② VÝCVIKOVÉ PROGRAMY -->
+                <section data-aos="fade-up" id="vycviky">
+                    <div class="glass" style="padding:2.5rem;border-radius:3px;">
+                        <span class="label-up">Výcvikové programy</span>
+                        <h2 class="sec-title mt-3 mb-1">Vyber si svůj průkaz.</h2>
+                        <p class="body-s mb-7">Ať míříš do kokpitu jako hobby, nebo jako profese — začátek je vždy stejný.</p>
+
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+
+                            <!-- ULL -->
+                            <article class="prog-card glass-light" style="padding:1.625rem;border-radius:2px;">
+                                <div style="z-index:1;">
+                                    <div style="margin-bottom:0.875rem;">
+                                        <span class="chip chip-a" style="font-size:0.65rem;">Nejrychlejší cesta</span>
+                                    </div>
+                                    <h3 style="font-size:2rem;font-weight:800;color:#001a2c;letter-spacing:-0.03em;line-height:1;">ULL</h3>
+                                    <p style="font-size:0.65rem;color:rgba(0,26,44,0.45);font-weight:600;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.875rem;">Ultralight průkaz</p>
+                                    <hr style="border-top:1px solid rgba(0,26,44,0.08);margin-bottom:0.875rem;"/>
+                                    <ul style="list-style:none;padding:0;margin:0 0 1.25rem;display:flex;flex-direction:column;gap:0.5rem;">
+                                        <li class="body-s" style="display:flex;gap:0.5rem;align-items:baseline;"><span style="color:#005f80;flex-shrink:0;">—</span>2 osoby na palubě</li>
+                                        <li class="body-s" style="display:flex;gap:0.5rem;align-items:baseline;"><span style="color:#005f80;flex-shrink:0;">—</span>min. 20&nbsp;h létání</li>
+                                        <li class="body-s" style="display:flex;gap:0.5rem;align-items:baseline;"><span style="color:#005f80;flex-shrink:0;">—</span>45&nbsp;h teorie</li>
+                                    </ul>
+                                    <a href="#" class="btn-adriatic" style="width:100%;justify-content:center;padding:0.7rem 1rem;font-size:0.75rem;">Zjistit více</a>
+                                </div>
+                            </article>
+
+                            <!-- LAPL -->
+                            <article class="prog-card glass-strong" style="padding:1.625rem;border-radius:2px;border-color:rgba(0,95,128,0.22);">
+                                <div style="z-index:1;">
+                                    <div style="margin-bottom:0.875rem;">
+                                        <span class="chip chip-a" style="font-size:0.65rem;">Nejoblíbenější</span>
+                                    </div>
+                                    <h3 style="font-size:1.85rem;font-weight:800;color:#001a2c;letter-spacing:-0.03em;line-height:1;">LAPL(A)</h3>
+                                    <p style="font-size:0.65rem;color:rgba(0,26,44,0.45);font-weight:600;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.875rem;">Rekreační průkaz</p>
+                                    <hr style="border-top:1px solid rgba(0,26,44,0.08);margin-bottom:0.875rem;"/>
+                                    <ul style="list-style:none;padding:0;margin:0 0 1.25rem;display:flex;flex-direction:column;gap:0.5rem;">
+                                        <li class="body-s" style="display:flex;gap:0.5rem;align-items:baseline;"><span style="color:#005f80;flex-shrink:0;">—</span>4 osoby na palubě</li>
+                                        <li class="body-s" style="display:flex;gap:0.5rem;align-items:baseline;"><span style="color:#005f80;flex-shrink:0;">—</span>min. 30&nbsp;h létání</li>
+                                        <li class="body-s" style="display:flex;gap:0.5rem;align-items:baseline;"><span style="color:#005f80;flex-shrink:0;">—</span>100&nbsp;h teorie</li>
+                                    </ul>
+                                    <a href="#" class="btn-adriatic" style="width:100%;justify-content:center;padding:0.7rem 1rem;font-size:0.75rem;">Zjistit více</a>
+                                </div>
+                            </article>
+
+                            <!-- PPL -->
+                            <article class="prog-card glass-light" style="padding:1.625rem;border-radius:2px;">
+                                <div style="z-index:1;">
+                                    <div style="margin-bottom:0.875rem;">
+                                        <span class="chip" style="font-size:0.65rem;">Pro ambiciózní</span>
+                                    </div>
+                                    <h3 style="font-size:2rem;font-weight:800;color:#001a2c;letter-spacing:-0.03em;line-height:1;">PPL(A)</h3>
+                                    <p style="font-size:0.65rem;color:rgba(0,26,44,0.45);font-weight:600;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.875rem;">Plný pilotní průkaz</p>
+                                    <hr style="border-top:1px solid rgba(0,26,44,0.08);margin-bottom:0.875rem;"/>
+                                    <ul style="list-style:none;padding:0;margin:0 0 1.25rem;display:flex;flex-direction:column;gap:0.5rem;">
+                                        <li class="body-s" style="display:flex;gap:0.5rem;align-items:baseline;"><span style="color:#005f80;flex-shrink:0;">—</span>Bez omezení</li>
+                                        <li class="body-s" style="display:flex;gap:0.5rem;align-items:baseline;"><span style="color:#005f80;flex-shrink:0;">—</span>min. 45&nbsp;h létání</li>
+                                        <li class="body-s" style="display:flex;gap:0.5rem;align-items:baseline;"><span style="color:#005f80;flex-shrink:0;">—</span>100&nbsp;h teorie</li>
+                                    </ul>
+                                    <a href="#" class="btn-adriatic" style="width:100%;justify-content:center;padding:0.7rem 1rem;font-size:0.75rem;">Zjistit více</a>
+                                </div>
+                            </article>
+
+                        </div>
+
+                        <!-- Další kurzy -->
+                        <div style="margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid rgba(0,26,44,0.07);">
+                            <p class="body-xs" style="margin-bottom:0.6rem;">Také nabízíme:</p>
+                            <div style="display:flex;flex-wrap:wrap;gap:0.4rem;">
+                                <span class="chip">Noční létání (NIGHT)</span>
+                                <span class="chip">Přístroje IR(A) SEP</span>
+                                <span class="chip">Létání za špatného počasí</span>
+                                <span class="chip">Safety kurz nouzových situací</span>
+                                <span class="chip">Obnova a prodloužení průkazu</span>
+                                <span class="chip">VFR řízené lety</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ③ PROČ AERO ACADEMY -->
+                <section data-aos="fade-up" id="proc">
+                    <div class="glass bw bw-xl" style="padding:2.5rem;border-radius:3px;overflow:hidden;">
+                        <div style="z-index:1;">
+                            <span class="label-up">Proč si vybrat nás</span>
+                            <h2 class="sec-title mt-3 mb-8">Tři věci, které nás<br>odlišují od ostatních.</h2>
+
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                                <div>
+                                    <div class="feat-icon" style="margin-bottom:1rem;">
+                                        <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#005f80" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                                    </div>
+                                    <h3 style="font-size:0.975rem;font-weight:700;color:#001a2c;margin-bottom:0.5rem;">Letíš, kdy ty chceš.</h3>
+                                    <p class="body-s">Rezervace přes mobilní aplikaci. Flexibilní harmonogram — platíš jen za odlétané hodiny, bez pevného rozvrhu.</p>
+                                </div>
+                                <div>
+                                    <div class="feat-icon" style="margin-bottom:1rem;">
+                                        <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#005f80" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                                    </div>
+                                    <h3 style="font-size:0.975rem;font-weight:700;color:#001a2c;margin-bottom:0.5rem;">Bezpečnost nade vše.</h3>
+                                    <p class="body-s">Moderní letadla s autopilotem a záchranným systémem. Instruktoři s praxí z dopravního létání.</p>
+                                </div>
+                                <div>
+                                    <div class="feat-icon" style="margin-bottom:1rem;">
+                                        <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#005f80" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                                    </div>
+                                    <h3 style="font-size:0.975rem;font-weight:700;color:#001a2c;margin-bottom:0.5rem;">Parta, která tě podrží.</h3>
+                                    <p class="body-s">Nejsme anonymní škola. Znáš svého instruktora jménem. Naši absolventi létají spolu dál.</p>
+                                </div>
+                            </div>
+
+                            <!-- Citát -->
+                            <div style="margin-top:2.5rem;padding:1.625rem;background:rgba(0,95,128,0.07);border-left:3px solid #005f80;border-radius:0 2px 2px 0;">
+                                <p style="font-size:1.05rem;font-weight:300;color:rgba(0,26,44,0.72);font-style:italic;line-height:1.65;">
+                                    „V oblacích jsi nad věcí. Létání není jen způsob dopravy — je to pohled na svět ze správné perspektivy."
+                                </p>
+                                <p style="margin-top:0.75rem;font-size:0.72rem;font-weight:700;color:#005f80;letter-spacing:0.06em;text-transform:uppercase;">— Lukáš Vychodil, zakladatel</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ④ FLOTILA -->
+                <section data-aos="fade-up" id="flotila">
+                    <div class="glass" style="padding:2.5rem;border-radius:3px;">
+                        <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:1.5rem;">
+                            <div>
+                                <span class="label-up">Flotila</span>
+                                <h2 class="sec-title mt-3">8 letadel. Vždy připravených.</h2>
+                            </div>
+                            <a href="#" class="btn-adriatic" style="align-self:flex-end;">
+                                Prohlédnout flotilu
+                                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                            </a>
+                        </div>
+
+                        <div style="height:210px;border-radius:2px;overflow:hidden;margin-bottom:1.5rem;">
+                            <img src="photo/photo-airplane-day.jpg" alt="Letadlo Aero Academy" style="width:100%;height:100%;object-fit:cover;"/>
+                        </div>
+
+                        <div style="display:flex;flex-wrap:wrap;gap:0.45rem;margin-bottom:1.25rem;">
+                            <span class="chip">ALTO NG Gold</span>
+                            <span class="chip">ALTO NG Blue</span>
+                            <span class="chip">ALTO NG Grey</span>
+                            <span class="chip chip-a">Bristell LSA</span>
+                            <span class="chip chip-a">Bristell B23 Red</span>
+                            <span class="chip chip-a">Bristell B23</span>
+                            <span class="chip">CESSNA C172SP</span>
+                            <span class="chip">Cirrus SR20</span>
+                        </div>
+
+                        <p class="body-s">Moderní letadla s autopilotem, záchranným systémem a skleněným kokpitem. Pohodlná i na delší lety po Evropě. Každé letadlo prochází pravidelnou technickou kontrolou.</p>
+                    </div>
+                </section>
+
+            </main>
+
+            <!-- ── RIGHT 4 COL (ASIDE) ── -->
+            <aside class="col-span-12 lg:col-span-4 flex flex-col gap-6 lg:sticky" style="top:96px;">
+
+                <!-- ★ ZL BANNER – konverzní magnet -->
+                <div class="zl-banner" style="padding:2.125rem;border-radius:3px;" data-aos="fade-left" id="zl">
+                    <div style="z-index:1;">
+                        <span class="label-up-w">Udělej první krok</span>
+
+                        <h2 style="font-size:1.75rem;font-weight:800;color:white;letter-spacing:-0.025em;line-height:1.05;margin-top:0.625rem;margin-bottom:1rem;">
+                            Zkušební let.<br>Nic tě nezavazuje.
+                        </h2>
+
+                        <p style="color:rgba(255,255,255,0.65);font-size:0.875rem;line-height:1.68;margin-bottom:1.625rem;">
+                            Přijď na Letňany. Instruktor tě provede každým krokem — v bezpečí a bez stresu. Vezmeš řízení do ruky ještě dnes.
+                        </p>
+
+                        <!-- Checklist benefitů -->
+                        <div style="padding:1.125rem;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.10);border-radius:2px;margin-bottom:1.75rem;display:flex;flex-direction:column;gap:0.7rem;">
+                            <div style="display:flex;align-items:center;gap:0.75rem;">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#00CFEF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                <span style="color:rgba(255,255,255,0.78);font-size:0.83rem;">Platíš jen za let, ne za výcvik</span>
+                            </div>
+                            <div style="display:flex;align-items:center;gap:0.75rem;">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#00CFEF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                <span style="color:rgba(255,255,255,0.78);font-size:0.83rem;">Instruktor s tebou od startu do přistání</span>
+                            </div>
+                            <div style="display:flex;align-items:center;gap:0.75rem;">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#00CFEF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                <span style="color:rgba(255,255,255,0.78);font-size:0.83rem;">Rezervace online nebo po telefonu</span>
+                            </div>
+                        </div>
+
+                        <a href="tel:+420607077373" class="btn-cta" style="width:100%;justify-content:center;font-size:0.82rem;">
+                            Rezervovat zkušební let
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        </a>
+
+                        <div style="margin-top:0.875rem;text-align:center;">
+                            <a href="tel:+420607077373" style="color:rgba(255,255,255,0.38);font-size:0.75rem;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='rgba(255,255,255,0.7)'" onmouseout="this.style.color='rgba(255,255,255,0.38)'">nebo zavolejte +420 607 077 373</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MAGAZÍN widget -->
+                <div class="glass" style="padding:1.875rem;border-radius:3px;" data-aos="fade-left" data-aos-delay="80" id="magazin">
+                    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem;">
+                        <span class="label-up">Magazín</span>
+                        <a href="#" style="font-size:0.72rem;color:#005f80;text-decoration:none;font-weight:600;letter-spacing:0.02em;transition:opacity 0.2s;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Všechny články →</a>
+                    </div>
+
+                    <div>
+                        <a href="#" class="mag-row">
+                            <span class="chip" style="margin-bottom:0.4rem;font-size:0.62rem;">Flotila</span>
+                            <p class="hl" style="font-size:0.875rem;line-height:1.38;margin-bottom:0.3rem;">Bristell LSA — nový letoun ve flotile</p>
+                            <span class="body-xs">Duben 2026</span>
+                        </a>
+                        <a href="#" class="mag-row">
+                            <span class="chip" style="margin-bottom:0.4rem;font-size:0.62rem;">Průvodce</span>
+                            <p class="hl" style="font-size:0.875rem;line-height:1.38;margin-bottom:0.3rem;">Jak vybrat leteckou školu: praktický průvodce</p>
+                            <span class="body-xs">Březen 2026</span>
+                        </a>
+                        <a href="#" class="mag-row">
+                            <span class="chip" style="margin-bottom:0.4rem;font-size:0.62rem;">Kariéra</span>
+                            <p class="hl" style="font-size:0.875rem;line-height:1.38;margin-bottom:0.3rem;">Cesta do kokpitu dopravního letadla</p>
+                            <span class="body-xs">Únor 2026</span>
+                        </a>
+                        <a href="#" class="mag-row">
+                            <span class="chip" style="margin-bottom:0.4rem;font-size:0.62rem;">Legislativa</span>
+                            <p class="hl" style="font-size:0.875rem;line-height:1.38;margin-bottom:0.3rem;">Od ÚCL po EASA: Mapa letecké legislativy</p>
+                            <span class="body-xs">Leden 2026</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- KONTAKT widget -->
+                <div class="glass-adriatic" style="padding:1.75rem;border-radius:3px;" data-aos="fade-left" data-aos-delay="160" id="kontakt">
+                    <span class="label-up">Kontakt</span>
+                    <h3 style="font-size:1.05rem;font-weight:700;color:#001a2c;margin-top:0.5rem;margin-bottom:1.25rem;">Máte otázky? Ozvěte se.</h3>
+
+                    <div style="display:flex;flex-direction:column;gap:0.875rem;">
+                        <a href="tel:+420607077373" style="display:flex;align-items:center;gap:0.75rem;text-decoration:none;color:rgba(0,26,44,0.72);font-size:0.875rem;transition:color 0.2s;" onmouseover="this.style.color='#005f80'" onmouseout="this.style.color='rgba(0,26,44,0.72)'">
+                            <div class="feat-icon" style="width:36px;height:36px;flex-shrink:0;">
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#005f80" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.07 13 19.79 19.79 0 0 1 1 4.18 2 2 0 0 1 2.96 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 17z"/></svg>
+                            </div>
+                            +420 607 077 373
+                        </a>
+                        <a href="mailto:info@aero-academy.cz" style="display:flex;align-items:center;gap:0.75rem;text-decoration:none;color:rgba(0,26,44,0.72);font-size:0.875rem;transition:color 0.2s;" onmouseover="this.style.color='#005f80'" onmouseout="this.style.color='rgba(0,26,44,0.72)'">
+                            <div class="feat-icon" style="width:36px;height:36px;flex-shrink:0;">
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#005f80" stroke-width="2" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                            </div>
+                            info@aero-academy.cz
+                        </a>
+                        <div style="display:flex;align-items:flex-start;gap:0.75rem;color:rgba(0,26,44,0.65);font-size:0.875rem;">
+                            <div class="feat-icon" style="width:36px;height:36px;flex-shrink:0;">
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#005f80" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                            </div>
+                            <span style="line-height:1.55;">Hůlkova 1075/35<br>198 00 Praha 18 — Letňany<br><span style="font-size:0.72rem;color:rgba(0,26,44,0.40);">Letiště Praha Letňany</span></span>
+                        </div>
+                    </div>
+                </div>
+
+            </aside>
+
+        </div>
+    </div>
+</div>
+
+</div><!-- /sky-bg -->
+
+<!-- ══════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════ -->
+<footer style="background:#001220;padding:3.5rem 0 2rem;border-top:1px solid rgba(0,95,128,0.22);">
+    <div class="shell">
+        <div class="grid grid-cols-12 gap-8 mb-10">
+
+            <div class="col-span-12 md:col-span-4">
+                <img src="logo/Aero_Academy-logo-text_black.png" alt="Aero Academy" style="height:20px;width:auto;filter:brightness(0) invert(1);opacity:0.50;margin-bottom:1rem;"/>
+                <p style="color:rgba(255,255,255,0.38);font-size:0.8rem;line-height:1.72;max-width:240px;">
+                    Pilotní výcvik na letišti Praha Letňany. Létáme od 2018, vedeme přes&nbsp;160 pilotů na jejich cestě k průkazu.
+                </p>
+            </div>
+
+            <div class="col-span-6 md:col-span-2">
+                <p style="color:rgba(255,255,255,0.28);font-size:0.62rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:1rem;">Výcvik</p>
+                <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0.6rem;">
+                    <li><a href="#" style="color:rgba(255,255,255,0.50);font-size:0.8rem;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#00CFEF'" onmouseout="this.style.color='rgba(255,255,255,0.50)'">Průkaz ULL</a></li>
+                    <li><a href="#" style="color:rgba(255,255,255,0.50);font-size:0.8rem;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#00CFEF'" onmouseout="this.style.color='rgba(255,255,255,0.50)'">Průkaz LAPL(A)</a></li>
+                    <li><a href="#" style="color:rgba(255,255,255,0.50);font-size:0.8rem;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#00CFEF'" onmouseout="this.style.color='rgba(255,255,255,0.50)'">Průkaz PPL(A)</a></li>
+                    <li><a href="#" style="color:rgba(255,255,255,0.50);font-size:0.8rem;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#00CFEF'" onmouseout="this.style.color='rgba(255,255,255,0.50)'">Noční létání</a></li>
+                </ul>
+            </div>
+
+            <div class="col-span-6 md:col-span-2">
+                <p style="color:rgba(255,255,255,0.28);font-size:0.62rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:1rem;">Škola</p>
+                <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0.6rem;">
+                    <li><a href="#" style="color:rgba(255,255,255,0.50);font-size:0.8rem;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#00CFEF'" onmouseout="this.style.color='rgba(255,255,255,0.50)'">Naše flotila</a></li>
+                    <li><a href="#" style="color:rgba(255,255,255,0.50);font-size:0.8rem;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#00CFEF'" onmouseout="this.style.color='rgba(255,255,255,0.50)'">Náš tým</a></li>
+                    <li><a href="#" style="color:rgba(255,255,255,0.50);font-size:0.8rem;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#00CFEF'" onmouseout="this.style.color='rgba(255,255,255,0.50)'">Magazín</a></li>
+                    <li><a href="#" style="color:rgba(255,255,255,0.50);font-size:0.8rem;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#00CFEF'" onmouseout="this.style.color='rgba(255,255,255,0.50)'">Kontakt</a></li>
+                </ul>
+            </div>
+
+            <div class="col-span-12 md:col-span-4">
+                <p style="color:rgba(255,255,255,0.28);font-size:0.62rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:1rem;">Zkušební let</p>
+                <p style="color:rgba(255,255,255,0.45);font-size:0.8rem;line-height:1.65;margin-bottom:1rem;">Vyzkoušej, jaké to je usednout za knipl. Bez závazků, bez strachu.</p>
+                <a href="tel:+420607077373" class="btn-cta" style="font-size:0.78rem;padding:0.75rem 1.5rem;">
+                    +420 607 077 373
+                </a>
+            </div>
+
+        </div>
+
+        <div style="border-top:1px solid rgba(0,95,128,0.18);padding-top:1.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.5rem;">
+            <p style="color:rgba(255,255,255,0.22);font-size:0.72rem;">© 2026 Aero Academy s.r.o. Všechna práva vyhrazena.</p>
+            <p style="color:rgba(255,255,255,0.18);font-size:0.68rem;">Hůlkova 1075/35, Praha 18 — Letňany</p>
+        </div>
+    </div>
+</footer>
+
+<!-- ══════════════════════════════════════════
+     SCRIPTS
+══════════════════════════════════════════ -->
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+<script>
+    AOS.init({
+        once: true,
+        duration: 680,
+        easing: 'ease-out-cubic',
+        offset: 50
+    });
+</script>
+
+</body>
+</html>
