@@ -163,17 +163,40 @@ Třída `.nav-link` — 0.875rem, barva `rgba(0,26,44,0.70)`, hover: `#005f80` +
 - Flowbite CDN (interaktivní komponenty, přestylováno glass CSS)
 - Font NouvelR (lokální .ttf v `font-nouvel-r/`)
 
-## Výcvikové programy
-| Průkaz | Popis | Létání | Teorie |
-|---|---|---|---|
-| ULL | Ultralight, 2 osoby | 20 h | 45 h |
-| LAPL(A) | Rekreační, 4 osoby | 30 h | 100 h |
-| PPL(A) | Plný průkaz, bez omezení | 45 h | 100 h |
+## Sekce Výcvikové programy
 
-Další kurzy: NIGHT, IR(A) SEP, VMC→IMC, Safety kurz, Obnova průkazu, VFR řízené lety
+Třída `.glass`, padding 2.5rem. Label: „Výcvikové programy". H2: „Vyber si svůj průkaz."
+
+**4 karty v gridu 2×2** (`grid-template-columns: 1fr 1fr`, `gap: 0.75rem`). Každá karta `.prog-card.glass-light`, padding 1.5rem.
+
+Struktura karty:
+- H3 (1.75rem, weight 800, adriatic letter-spacing) — zkratka průkazu
+- Podtitulek (0.75rem, weight 300, color rgba(0,26,44,0.55)) — název na 1 řádku
+- Popis (0.78rem)
+- `<hr>` oddělovač
+- Odrážky `—` v adriatic barvě
+- Tlačítko `.btn-adriatic` „Zjistit více →" (full width)
+
+| Průkaz | Podtitulek | Odrážky |
+|---|---|---|
+| ULL | Ultralehký letoun | 2 osoby, 20 h, 45 h teorie |
+| PPL(A) | Soukromý pilot | Bez omezení, 45 h, 100 h teorie |
+| LAPL(A) | Lehký sportovní pilot | 4 osoby, 30 h, 100 h teorie |
+| CPL(A) | Obchodní pilot | Komerční lety, 200 h, ATPL teorie |
+
+Pod kartami: sekce „Pokračovací kurzy:" s chip tagy (Noční létání, IR(A) SEP, Létání za špatného počasí, Safety kurz, Obnova průkazu, VFR řízené lety).
 
 ## Flotila (8 letadel)
 ALTO NG Gold · Blue · Grey · Bristell LSA · Bristell B23 Red · Bristell B23 · CESSNA C172SP · Cirrus SR20
+
+## Pořadí sekcí — main 8col (zleva)
+
+1. Úvod (`id="o-nas"`)
+2. Proč si vybrat nás (`id="proc"`)
+3. Výcvikové programy (`id="vycviky"`)
+4. 6 kroků jak se stát pilotem
+5. Citát
+6. Flotila (`id="flotila"`)
 
 ## Sekce 1 — Úvod (první panel v main 8col)
 
@@ -206,11 +229,40 @@ Třída `.glass .bw .bw-xl`, padding 2.5rem, border-radius 3px, overflow hidden.
 | Nadpis | Ikona |
 |---|---|
 | Dopravní piloti jako instruktoři | srdce (heart) |
-| Praha Letňany | location pin |
+| Teorie online | monitor/screen |
 | Moderní letadla | vrstvy (layers) |
 | Flexibilní rezervace | kalendář |
 | Přátelská parta | lidé (users) |
 | 160+ absolventů | medaile (award) |
+
+## Sekce „6 kroků jak se stát pilotem"
+
+Třída `.glass`, padding 2.5rem, border-radius 3px. Label: „Jak probíhá výcvik". H2: „6 kroků jak se stát pilotem."
+
+Umístění: za sekcí Výcvikové programy, před Citátem.
+
+**Timeline — struktura `<ol>`:** `display:flex; flex-direction:column; gap:0; list-style:none`
+
+**Každý `<li>`:** `display:flex; gap:1.25rem; align-items:center`
+
+Levý sloupec (šířka 2.25rem, `align-self:stretch`, `flex-direction:column`, `align-items:center`):
+- Horní čára: `width:2px; flex:1; background:rgba(0,95,128,0.20)` — první krok má `opacity:0`
+- Kroužek: `width/height:2.25rem; border-radius:50%; z-index:1` (překrývá čáru)
+- Dolní čára: stejná — poslední krok má `opacity:0`
+
+Kroužky: kroky 1–5 = adriatic `#005f80`, text bílý 0.7rem 800; krok 6 = cyan `#00CFEF` s SVG checkmark (stroke `#001a2c`).
+
+Pravý sloupec: `padding:1rem 0`, h3 0.95rem 700, text `.body-s`.
+
+**6 kroků:**
+1. Zkušební let
+2. Briefing a výběr výcviku
+3. Lékařská prohlídka — „kdo může řídit, ten může létat"
+4. Teorie
+5. Výcvik ve vzduchu
+6. Zkouška & průkaz v ruce — „a obloha je tvoje. Průkaz na celý život."
+
+**Pozor:** nesmí být `margin` na čárových segmentech — způsobuje viditelné mezery. Čára je nepřerušená, kroužek ji překrývá díky `z-index:1`.
 
 ## Magazín widget (aside)
 
@@ -228,6 +280,28 @@ Třída `.glass`, padding 1.875rem, border-radius 3px.
 **Layout `.mag-row`:** `display: flex`, `align-items: center`, `gap: 0.875rem`. Oddělovač: `border-bottom: 1px solid rgba(0,26,44,0.08)`. Hover: `opacity: 0.75` na celém řádku.
 
 **Fotky:** zatím placeholdery z `/photo/` (opakují se), konkrétní přijdou později.
+
+## Sekce Citát
+
+Třída `.glass-adriatic`, padding `2rem 2.5rem`, border-radius 3px, `border-left: 3px solid #005f80`.
+
+Text: „V oblacích jsi nad věcí. Létání není jen způsob dopravy — je to pohled na svět ze správné perspektivy."
+Autor: „— Lukáš Vychodil, hlavní instruktor" (0.72rem, weight 700, color `#005f80`, uppercase).
+
+Umístění: za sekcí 6 kroků, před Flotilou.
+
+## Sekce Flotila
+
+Třída `.glass`, padding 2.5rem. Label: „Flotila". H2: „8 letadel. Vždy připravených."
+
+Obsah: foto letadla (height 210px, object-fit cover) + chip tagy 8 letadel (Bristell tagy = `.chip.chip-a`) + popisný text.
+Tlačítko `.btn-adriatic` „Prohlédnout flotilu →" vpravo vedle nadpisu.
+
+## Aside — pořadí widgetů (4col vpravo)
+
+1. **ZL Banner** (`id="zl"`) — tmavý gradient `#001220→#003148→#005f80`, Bristell watermark bílý vpravo nahoře, checklist 3 benefitů, `.btn-cta` cyan, `position: sticky; top: 96px`
+2. **Magazín** (`id="magazin"`) — 4 články, každý: fotka 64×52px + název + autor
+3. **Kontakt** (`id="kontakt"`) — `.glass-adriatic`, tel + email + adresa se SVG ikonami
 
 ## Konverzní architektura
 Primární cíl: **Zkušební let**
