@@ -1,0 +1,8 @@
+# Ignoruj úplně všechno
+
+*
+!index.html
+!claude.md
+!.gitignore
+
+# Ale udělej výjimku pro tyto soubory
