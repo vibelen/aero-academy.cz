@@ -153,6 +153,8 @@ Třída `.nav-link` — 0.875rem, barva `rgba(0,26,44,0.70)`, hover: `#005f80` +
 
 **Telefon v navu není** — je pouze v top liště a v kontaktním widgetu.
 
+**Hover efekt nav odkazů:** podtržení přesně na délku textu (ne padding) — `text-decoration: underline`, `text-decoration-color: #005f80`, `text-decoration-thickness: 3px`, `text-underline-offset: 5px`. Přechod přes `transition: text-decoration-color 0.2s`. Nepoužívat `border-bottom` (podtrhuje celou šířku včetně paddingu).
+
 **Mobile:** nav skrytý pod `lg`, hamburger (3 linky, poslední kratší) toggleuje `#mob-nav` dropdown s `.glass` stylem.
 
 ## Stack
