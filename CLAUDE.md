@@ -81,6 +81,22 @@ Výška 36 px, pozadí `#001220`, border-bottom `rgba(0,95,128,0.28)`.
 
 **Pozor:** `gap` musí být `0` — mezery jsou řešeny přes `padding-right` na `.ticker-link`, jinak `-50%` translate nesedí a animace bliká na konci smyčky.
 
+## Sticky header (nav)
+
+Výška 76 px, třída `.glass-nav` (80% bílá + blur 24px).
+
+**Layout:** 3-sloupcový grid — `grid-template-columns: 1fr auto 1fr`
+- Vlevo: logo `Aero_Academy-logo-text_black.png`, výška 26 px, `justify-self: start`
+- Střed: nav odkazy (`auto` šířka) — přesně vycentrované
+- Vpravo: CTA tlačítko `.btn-cta`, `justify-self: end`
+
+**Nav položky:** Výcviky · Flotila · Náš tým · Magazín · Kontakt
+Třída `.nav-link` — 0.875rem, barva `rgba(0,26,44,0.70)`, hover: `#005f80` + `rgba(0,95,128,0.06)` bg, border-radius 4px.
+
+**Telefon v navu není** — je pouze v top liště a v kontaktním widgetu.
+
+**Mobile:** nav skrytý pod `lg`, hamburger (3 linky, poslední kratší) toggleuje `#mob-nav` dropdown s `.glass` stylem.
+
 ## Stack
 - Tailwind CSS v4 Browser CDN (`@tailwindcss/browser@4`)
 - AOS.js (scroll animace, CDN)
