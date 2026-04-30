@@ -253,8 +253,7 @@
         /* ── STATISTIKY ─────────────────────────────────────── */
         .stat-num   { font-size:2rem; font-weight:800; color:white; line-height:1; letter-spacing:-0.03em; }
         .stat-lbl   { font-size:0.65rem; font-weight:400; color:rgba(255,255,255,0.55); letter-spacing:0.08em; text-transform:uppercase; margin-top:0.2rem; }
-        .stat-item  { border-right:1px solid rgba(255,255,255,0.18); padding:1.1rem 1.75rem; }
-        .stat-item:first-child { padding-left:1.25rem; }
+        .stat-item  { border-right:1px solid rgba(255,255,255,0.18); padding:1.1rem 1.5rem; text-align:center; }
         .stat-item:last-child  { border-right:none; }
 
         /* ── PROGRAM CARDS ──────────────────────────────────── */
@@ -429,35 +428,33 @@
 <!-- ══════════════════════════════════════════
      HERO — 100VH
 ══════════════════════════════════════════ -->
-<section style="min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;">
+<section style="height:calc(100vh - 112px);display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;">
 
     <!-- tmavý gradient zdola pro čitelnost -->
     <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,8,16,0.08) 0%,rgba(0,8,16,0.04) 35%,rgba(0,8,16,0.50) 72%,rgba(0,8,16,0.72) 100%);z-index:1;"></div>
 
-    <div class="shell pb-14" style="z-index:2;">
+    <div class="shell pb-8" style="z-index:2;">
 
         <!-- Logo velké -->
-        <div class="mb-8" data-aos="fade-up" data-aos-duration="900">
-            <img src="logo/Aero_Academy-logo-final.png" alt="Aero Academy" style="height:68px;width:auto;filter:brightness(0) invert(1);"/>
+        <div class="mb-4" data-aos="fade-up" data-aos-duration="900">
+            <img src="logo/Aero_Academy-logo-final.png" alt="Aero Academy" style="height:56px;width:auto;filter:brightness(0) invert(1);"/>
         </div>
 
-        <!-- Overline -->
-        <div class="mb-5" data-aos="fade-up" data-aos-delay="80">
-            <span class="label-up-w">Pilotní výcvik · Praha Letňany · od&nbsp;2018</span>
-        </div>
+        <!-- Divider -->
+        <div class="mb-4" data-aos="fade-up" data-aos-delay="120" style="width:48px;height:2px;background:rgba(255,255,255,0.40);"></div>
 
         <!-- Headline -->
-        <h1 class="hero-h1 mb-5" data-aos="fade-up" data-aos-delay="160" style="max-width:780px;">
+        <h1 class="hero-h1 mb-3" data-aos="fade-up" data-aos-delay="160" style="max-width:780px;">
             Létat je jednodušší,<br>než sis kdy myslel.
         </h1>
 
         <!-- Subline -->
-        <p class="hero-sub mb-10" data-aos="fade-up" data-aos-delay="240" style="max-width:500px;">
-            Pilotní průkaz je dostupný jako řidičák.<br>Začni zkušebním letem — nic tě nezavazuje.
+        <p class="hero-sub mb-6" data-aos="fade-up" data-aos-delay="240" style="max-width:500px;">
+            Pilotní výcvik Praha Letňany
         </p>
 
         <!-- CTA tlačítka -->
-        <div class="flex flex-wrap gap-4 mb-14" data-aos="fade-up" data-aos-delay="320">
+        <div class="flex flex-wrap gap-4 mb-6" data-aos="fade-up" data-aos-delay="320">
             <a href="#zl" class="btn-cta">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                 Rezervovat zkušební let
@@ -468,7 +465,7 @@
         </div>
 
         <!-- Statistiky panel -->
-        <div class="glass-light inline-flex flex-wrap" data-aos="fade-up" data-aos-delay="400" style="border-radius:3px;">
+        <div class="glass-light" data-aos="fade-up" data-aos-delay="400" style="border-radius:3px;display:inline-grid;grid-template-columns:repeat(4,1fr);">
             <div class="stat-item">
                 <div class="stat-num">160<span style="font-size:1.2rem;font-weight:700;opacity:0.7;">+</span></div>
                 <div class="stat-lbl">Absolventů</div>
@@ -482,8 +479,8 @@
                 <div class="stat-lbl">Typy průkazů</div>
             </div>
             <div class="stat-item">
-                <div class="stat-num" style="font-size:1.5rem;">LKŇ</div>
-                <div class="stat-lbl">Praha Letňany</div>
+                <div class="stat-num">Praha</div>
+                <div class="stat-lbl" style="font-weight:300;letter-spacing:0.12em;">Letňany</div>
             </div>
         </div>
     </div>

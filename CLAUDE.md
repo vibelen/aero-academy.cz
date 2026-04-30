@@ -85,6 +85,34 @@ Původní modrá loga je steel blue (~`#4B8EC8`). Na webu používáme verzi **N
 - **Textura z letadel** — opakující se pattern letadélek (viz logomanuál str. 7), vhodné pro pozadí, obaly, desky
 - Oba prvky zachovávají modrý/adriatický tón identity
 
+## Hero sekce
+
+**Výška:** `height: calc(100vh - 112px)` — kompenzuje top bar (36px) + nav (76px), aby vše bylo vidět bez scrollování.
+
+**Layout:** `display: flex; flex-direction: column; justify-content: flex-end` — obsah kotví ke spodní hraně viewportu.
+
+**Gradient overlay:** `linear-gradient(to bottom, ...)` — průhledný nahoře, tmavý (~0.72 opacity) dole pro čitelnost textu.
+
+**Pořadí prvků (shora dolů):**
+1. Logo `Aero_Academy-logo-final.png` — výška 56px, `filter: brightness(0) invert(1)` (bílé), `mb-4`
+2. Divider — 48×2px, `rgba(255,255,255,0.40)`, `mb-4`
+3. H1 „Létat je jednodušší, než sis kdy myslel." — třída `.hero-h1` (`clamp(2.8rem, 7.5vw, 5.8rem)`, weight 800, white), `mb-3`
+4. Subline „Pilotní výcvik Praha Letňany" — třída `.hero-sub` (`clamp(1rem, 2vw, 1.35rem)`, weight 300, bílá 82%), `mb-6`
+5. 2 CTA tlačítka — `.btn-cta` (cyan) + `.btn-ghost` (outline bílý), `mb-6`
+6. Statistiky panel — `.glass-light`, `display: inline-grid; grid-template-columns: repeat(4, 1fr)`, `pb-8`
+
+**Statistiky (4 stejně široké sloupce, `text-align: center`):**
+| Číslo | Popis |
+|---|---|
+| 160+ | Absolventů |
+| 8 | Letadel ve flotile |
+| 4 | Typy průkazů |
+| Praha / Letňany | Praha = `.stat-num` (výrazné), Letňany = `.stat-lbl` (jemné) |
+
+Oddělovač sloupců: `border-right: 1px solid rgba(255,255,255,0.18)`, poslední bez borderu.
+
+**Co v hero NENÍ:** žádný overline label, žádný podnadpis s více větami.
+
 ## Lišta aktualit (top bar)
 
 Výška 36 px, pozadí `#001220`, border-bottom `rgba(0,95,128,0.28)`.
