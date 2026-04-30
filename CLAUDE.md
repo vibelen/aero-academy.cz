@@ -175,27 +175,42 @@ Další kurzy: NIGHT, IR(A) SEP, VMC→IMC, Safety kurz, Obnova průkazu, VFR ř
 ## Flotila (8 letadel)
 ALTO NG Gold · Blue · Grey · Bristell LSA · Bristell B23 Red · Bristell B23 · CESSNA C172SP · Cirrus SR20
 
-## Úvodní sekce (první panel v main 8col)
+## Sekce 1 — Úvod (první panel v main 8col)
 
 Třída `.glass .bw .bw-xl`, padding 2.5rem, border-radius 3px, overflow hidden. Bristell watermark vpravo nahoře.
 
-**Pořadí prvků:**
-1. **Label** `.label-up` — „Začít je jednoduché"
-2. **H2** — „Chceš se naučit řídit letadlo?"
-3. **Odstavec 1** — typy průkazů + instruktoři (vytučněno: `<strong>typy průkazů</strong>`, `<strong>dopravní piloti</strong>`)
-4. **Odstavec 2** — řidičák + Zkušební let (vytučněno: `<strong>Zkušebním letem</strong>`)
-5. **Bento fotogalerie** — grid s texty ve fotkách (viz níže)
+**Obsah:**
+1. Label `.label-up` — „Začít je jednoduché"
+2. H2 `.sec-title` — „Chceš se naučit řídit letadlo?"
+3. Odstavec 1 — typy průkazů + instruktoři. Vytučněno: `<strong>typy průkazů</strong>`, `<strong>dopravní piloti</strong>`
+4. Odstavec 2 — řidičák + zkušební let. Vytučněno: `<strong>Zkušebním letem</strong>`
 
-**Bento fotogalerie:**
-- Grid: `grid-template-columns: 2fr 1fr 1fr`, `grid-template-rows: 130px 130px`, `gap: 0.375rem`
-- 5 buněk: levá přes oba řádky (`grid-row: 1/3`), vpravo 2×2
-- Každá fotka: `object-fit: cover` + gradient overlay (`linear-gradient to top, rgba(0,10,20,0.60)`) + bílý popisek `position:absolute; bottom; left`
-- Velká fotka vlevo: dvouřádkový text, 0.78rem, font-weight 600
-- Malé fotky: jednořádkový text, 0.72rem, font-weight 600
-- Hover: `transform: scale(1.04)` na `<img>`, transition 0.4s
-- **Popisky:** Letňany od 2018 · Výcvik dle EASA · Autopilot standard · Noční létání · Záchranný padák
+**Co tam není:** fotky, chipy, bento grid.
 
-**Co tam není:** chip tagy pod galerií (jsou přímo ve fotkách).
+## Sekce 2 — Proč si vybrat nás (druhý panel v main 8col)
+
+Třída `.glass .bw .bw-xl`, padding 2.5rem, border-radius 3px, overflow hidden. Bristell watermark vpravo nahoře.
+
+**Obsah:**
+1. Label `.label-up` — „Proč si vybrat nás"
+2. H2 `.sec-title` — „Létáme srdcem."
+3. Grid 6 karet — `grid-template-columns: 1fr 1fr`, `gap: 0.625rem`
+
+**Každá karta** (`.glass-light`, padding 1rem 1.125rem, border-radius 2px):
+- SVG ikona (18×18, stroke `#005f80`, stroke-width 1.75)
+- Nadpis 0.82rem, font-weight 700, color `#001a2c`
+- Text `.body-s`, 0.78rem
+- Hover: `translateY(-3px)` + `box-shadow: 0 12px 32px rgba(0,95,128,0.14)`
+
+**6 karet a jejich ikony:**
+| Nadpis | Ikona |
+|---|---|
+| Dopravní piloti jako instruktoři | srdce (heart) |
+| Praha Letňany | location pin |
+| Moderní letadla | vrstvy (layers) |
+| Flexibilní rezervace | kalendář |
+| Přátelská parta | lidé (users) |
+| 160+ absolventů | medaile (award) |
 
 ## Magazín widget (aside)
 
