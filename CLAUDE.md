@@ -55,6 +55,36 @@ Integrován přes CSS `::after` pseudo-element:
 `photo/photo-sky-background.jpg` — `background-attachment: fixed`, pokrývá celou stránku.
 Komponenty (glass panely) kloužou přes fixní oblohu.
 
+## Logo — pravidla použití (z logomanuálu v2, BrandBoost)
+
+### Koncept loga
+Logo tvoří dvě části: **„Aero"** (velké, silné písmo) + **„Academy"** (menší, pod tím). V písmenu „A" je vylisovaná silueta letadla Alta NG pohledem shora — to je klíčový grafický prvek identity. Letadélko lze používat i samostatně jako dekorativní prvek v grafice.
+
+### Varianty loga a kdy je použít
+| Varianta | Soubor | Použití |
+|---|---|---|
+| Plné logo (ikona + text pod) | `logo/Aero_Academy-logo-final.png` | Hero sekce — velké, na tmavém/foto pozadí |
+| Horizontální text logo | `logo/Aero_Academy-logo-text_black.png` | Nav, footer, malé formáty |
+| Barevná verze | modrá | Světlé pozadí |
+| Černá verze | černé PNG | Světlé pozadí (nav na glass) |
+| Bílá verze | `filter: brightness(0) invert(1)` | Tmavé pozadí (hero, footer, ZL banner) |
+| Favicon | `logo/Aero_Academy-FAVI_blue.png` | Prohlížeč, app ikona |
+
+### Barva loga
+Původní modrá loga je steel blue (~`#4B8EC8`). Na webu používáme verzi **Nová 03** — teal/adriatic (~`#005f80`), která je konzistentní s primární brand barvou webu.
+
+### Pravidla použití
+- Na **světlém pozadí** (glass, bílá): černá nebo barevná varianta — bez filtru
+- Na **tmavém pozadí** (hero foto, footer, ZL banner): bílá varianta — `filter: brightness(0) invert(1)`
+- Ve **footeru**: bílá verze, `opacity: 0.50` (jemně potlačená)
+- **Nedeformovat**, nepřebarvovat libovolně, nezmenšovat pod čitelnou velikost
+- Horizontální „dlouhé logo" (`Aero Academy` na jednom řádku) — použít jen kde není prostor pro stacked verzi
+
+### Grafické prvky z identity
+- **Silueta letadla** (Alta NG shora) — lze použít samostatně jako dekorativní prvek, watermark, ikona
+- **Textura z letadel** — opakující se pattern letadélek (viz logomanuál str. 7), vhodné pro pozadí, obaly, desky
+- Oba prvky zachovávají modrý/adriatický tón identity
+
 ## Lišta aktualit (top bar)
 
 Výška 36 px, pozadí `#001220`, border-bottom `rgba(0,95,128,0.28)`.
