@@ -68,14 +68,18 @@ Výška 36 px, pozadí `#001220`, border-bottom `rgba(0,95,128,0.28)`.
 6. **Separátor** — 1px × 14px, `rgba(0,150,200,0.25)`, skrytý pod `sm` (`hidden sm:block`)
 7. **Email** — SVG ikona + adresa, `<a href="mailto:...">`, skrytý pod `sm` (`hidden sm:flex`)
 
+**Novinky:** 3 různé zprávy, každá jako `<a href="..." class="ticker-link">`. Celá sada zduplikována (6 prvků celkem) pro bezešvou smyčku — `-50%` překladu odpovídá přesně jedné sadě.
+
 **CSS třídy:**
 ```css
 .ticker-wrap  { overflow:hidden; mask-image: fade-okraje; }
-.ticker-track { display:inline-flex; gap:8rem; animation: tick 14s linear infinite; }
-.ticker-track:hover { animation-play-state: paused; }   /* umožní klik */
-.ticker-link  { color:rgba(255,255,255,0.60); text-decoration:none; transition:color 0.2s; }
+.ticker-track { display:inline-flex; gap:0; animation: tick 36s linear infinite; }
+.ticker-track:hover { animation-play-state: paused; }   /* zastaví se pro klik */
+.ticker-link  { color:rgba(255,255,255,0.60); text-decoration:none; padding-right:7rem; transition:color 0.2s; }
 .ticker-link:hover { color:#00CFEF; }
 ```
+
+**Pozor:** `gap` musí být `0` — mezery jsou řešeny přes `padding-right` na `.ticker-link`, jinak `-50%` translate nesedí a animace bliká na konci smyčky.
 
 ## Stack
 - Tailwind CSS v4 Browser CDN (`@tailwindcss/browser@4`)

@@ -306,8 +306,8 @@
         /* ── TICKER ─────────────────────────────────────────── */
         .ticker-wrap { overflow:hidden; flex:1; mask-image:linear-gradient(to right,transparent 0,black 1.5rem,black calc(100% - 1.5rem),transparent 100%); -webkit-mask-image:linear-gradient(to right,transparent 0,black 1.5rem,black calc(100% - 1.5rem),transparent 100%); }
         .ticker-track {
-            display:inline-flex; gap:8rem; white-space:nowrap;
-            animation:tick 14s linear infinite;
+            display:inline-flex; gap:0; white-space:nowrap;
+            animation:tick 36s linear infinite;
         }
         .ticker-track:hover { animation-play-state:paused; }
         @keyframes tick { from{transform:translateX(0)} to{transform:translateX(-50%)} }
@@ -316,6 +316,7 @@
             text-decoration:none;
             transition:color 0.2s;
             cursor:pointer;
+            padding-right:7rem;
         }
         .ticker-link:hover { color:#00CFEF; }
 
@@ -346,7 +347,11 @@
         <div class="ticker-wrap">
             <div class="ticker-track" style="font-size:0.775rem;">
                 <a href="#" class="ticker-link">Nový Bristell LSA ve flotile — nejnovější typ dostupný od dubna&nbsp;2026</a>
+                <a href="#" class="ticker-link">Zkušební let s instruktorem — rezervujte online i na poslední&nbsp;chvíli</a>
+                <a href="#" class="ticker-link">Výcvik PPL(A) — zahájení nové skupiny. Kontaktujte nás ještě&nbsp;dnes.</a>
                 <a href="#" class="ticker-link">Nový Bristell LSA ve flotile — nejnovější typ dostupný od dubna&nbsp;2026</a>
+                <a href="#" class="ticker-link">Zkušební let s instruktorem — rezervujte online i na poslední&nbsp;chvíli</a>
+                <a href="#" class="ticker-link">Výcvik PPL(A) — zahájení nové skupiny. Kontaktujte nás ještě&nbsp;dnes.</a>
             </div>
         </div>
 
