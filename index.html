@@ -327,6 +327,10 @@
         /* ── HOVER LINK ─────────────────────────────────────── */
         .hl { color:rgba(0,26,44,0.80); text-decoration:none; transition:color 0.2s; }
         .hl:hover { color:#005f80; }
+
+        /* ── FOOTER LINKS ───────────────────────────────────── */
+        .footer-link { color:rgba(255,255,255,0.50); font-size:0.8rem; text-decoration:none; transition:color 0.2s; }
+        .footer-link:hover { color:#00CFEF; }
     </style>
 </head>
 
@@ -801,38 +805,44 @@
 ══════════════════════════════════════════ -->
 <footer style="background:#001220;padding:3.5rem 0 2rem;border-top:1px solid rgba(0,95,128,0.22);">
     <div class="shell">
-        <div class="grid grid-cols-12 gap-8 mb-10">
 
-            <div class="col-span-12 md:col-span-4">
-                <img src="logo/Aero_Academy-logo-text_black.png" alt="Aero Academy" style="height:20px;width:auto;filter:brightness(0) invert(1);opacity:0.50;margin-bottom:1rem;"/>
+        <!-- 4 sloupce inline grid -->
+        <div style="display:grid;grid-template-columns:2fr 1fr 1fr 2fr;gap:3rem;margin-bottom:3rem;">
+
+            <!-- Logo + popis -->
+            <div>
+                <img src="logo/Aero_Academy-logo-text_black.png" alt="Aero Academy" style="height:20px;width:auto;filter:brightness(0) invert(1);opacity:0.50;margin-bottom:1rem;display:block;"/>
                 <p style="color:rgba(255,255,255,0.38);font-size:0.8rem;line-height:1.72;max-width:240px;">
                     Pilotní výcvik na letišti Praha Letňany. Létáme od 2018, vedeme přes&nbsp;160 pilotů na jejich cestě k průkazu.
                 </p>
             </div>
 
-            <div class="col-span-6 md:col-span-2">
+            <!-- Výcvik -->
+            <div>
                 <p style="color:rgba(255,255,255,0.28);font-size:0.62rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:1rem;">Výcvik</p>
                 <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0.6rem;">
-                    <li><a href="#" style="color:rgba(255,255,255,0.50);font-size:0.8rem;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#00CFEF'" onmouseout="this.style.color='rgba(255,255,255,0.50)'">Průkaz ULL</a></li>
-                    <li><a href="#" style="color:rgba(255,255,255,0.50);font-size:0.8rem;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#00CFEF'" onmouseout="this.style.color='rgba(255,255,255,0.50)'">Průkaz LAPL(A)</a></li>
-                    <li><a href="#" style="color:rgba(255,255,255,0.50);font-size:0.8rem;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#00CFEF'" onmouseout="this.style.color='rgba(255,255,255,0.50)'">Průkaz PPL(A)</a></li>
-                    <li><a href="#" style="color:rgba(255,255,255,0.50);font-size:0.8rem;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#00CFEF'" onmouseout="this.style.color='rgba(255,255,255,0.50)'">Noční létání</a></li>
+                    <li><a href="#" class="footer-link">Průkaz ULL</a></li>
+                    <li><a href="#" class="footer-link">Průkaz LAPL(A)</a></li>
+                    <li><a href="#" class="footer-link">Průkaz PPL(A)</a></li>
+                    <li><a href="#" class="footer-link">Noční létání</a></li>
                 </ul>
             </div>
 
-            <div class="col-span-6 md:col-span-2">
+            <!-- Škola -->
+            <div>
                 <p style="color:rgba(255,255,255,0.28);font-size:0.62rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:1rem;">Škola</p>
                 <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0.6rem;">
-                    <li><a href="#" style="color:rgba(255,255,255,0.50);font-size:0.8rem;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#00CFEF'" onmouseout="this.style.color='rgba(255,255,255,0.50)'">Naše flotila</a></li>
-                    <li><a href="#" style="color:rgba(255,255,255,0.50);font-size:0.8rem;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#00CFEF'" onmouseout="this.style.color='rgba(255,255,255,0.50)'">Náš tým</a></li>
-                    <li><a href="#" style="color:rgba(255,255,255,0.50);font-size:0.8rem;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#00CFEF'" onmouseout="this.style.color='rgba(255,255,255,0.50)'">Magazín</a></li>
-                    <li><a href="#" style="color:rgba(255,255,255,0.50);font-size:0.8rem;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#00CFEF'" onmouseout="this.style.color='rgba(255,255,255,0.50)'">Kontakt</a></li>
+                    <li><a href="#" class="footer-link">Naše flotila</a></li>
+                    <li><a href="#" class="footer-link">Náš tým</a></li>
+                    <li><a href="#" class="footer-link">Magazín</a></li>
+                    <li><a href="#" class="footer-link">Kontakt</a></li>
                 </ul>
             </div>
 
-            <div class="col-span-12 md:col-span-4">
+            <!-- CTA -->
+            <div>
                 <p style="color:rgba(255,255,255,0.28);font-size:0.62rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:1rem;">Zkušební let</p>
-                <p style="color:rgba(255,255,255,0.45);font-size:0.8rem;line-height:1.65;margin-bottom:1rem;">Vyzkoušej, jaké to je usednout za knipl. Bez závazků, bez strachu.</p>
+                <p style="color:rgba(255,255,255,0.45);font-size:0.8rem;line-height:1.65;margin-bottom:1.125rem;">Vyzkoušej, jaké to je usednout za knipl. Bez závazků, bez strachu.</p>
                 <a href="tel:+420607077373" class="btn-cta" style="font-size:0.78rem;padding:0.75rem 1.5rem;">
                     +420 607 077 373
                 </a>
@@ -840,7 +850,8 @@
 
         </div>
 
-        <div style="border-top:1px solid rgba(0,95,128,0.18);padding-top:1.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.5rem;">
+        <!-- Spodní lišta -->
+        <div style="border-top:1px solid rgba(0,95,128,0.18);padding-top:1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;">
             <p style="color:rgba(255,255,255,0.22);font-size:0.72rem;">© 2026 Aero Academy s.r.o. Všechna práva vyhrazena.</p>
             <p style="color:rgba(255,255,255,0.18);font-size:0.68rem;">Hůlkova 1075/35, Praha 18 — Letňany</p>
         </div>
