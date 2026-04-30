@@ -145,6 +145,23 @@ Další kurzy: NIGHT, IR(A) SEP, VMC→IMC, Safety kurz, Obnova průkazu, VFR ř
 ## Flotila (8 letadel)
 ALTO NG Gold · Blue · Grey · Bristell LSA · Bristell B23 Red · Bristell B23 · CESSNA C172SP · Cirrus SR20
 
+## Magazín widget (aside)
+
+Třída `.glass`, padding 1.875rem, border-radius 3px.
+
+**Hlavička:** label „Magazín" vlevo + odkaz „Všechny články →" vpravo.
+
+**Každý článek = 3 informace, žádné jiné:**
+1. **Fotka** — 64×52 px, `object-fit: cover`, border-radius 2px, flex-shrink 0
+2. **Název článku** — `.hl`, 0.85rem, line-height 1.35
+3. **Autor** — `.body-xs` (jméno instruktora, např. Lukáš Vychodil / Radek Sekyra)
+
+**Co tam není:** kategorie/chip tagy, datumy, perex.
+
+**Layout `.mag-row`:** `display: flex`, `align-items: center`, `gap: 0.875rem`. Oddělovač: `border-bottom: 1px solid rgba(0,26,44,0.08)`. Hover: `opacity: 0.75` na celém řádku.
+
+**Fotky:** zatím placeholdery z `/photo/` (opakují se), konkrétní přijdou později.
+
 ## Konverzní architektura
 Primární cíl: **Zkušební let**
 ZL banner v aside = designový magnet (tmavý gradient, Bristell watermark, cyan CTA, sticky).
