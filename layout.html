@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aero Academy | Pilotní výcvik Praha Letňany</title>
+    
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+
+    <style type="text/css">
+        /* Definice fontů */
+        @font-face { font-family: 'NouvelR'; src: url('font-nouvel-r/NouvelRLight.ttf') format('truetype'); font-weight: 300; }
+        @font-face { font-family: 'NouvelR'; src: url('font-nouvel-r/NouvelRBook.ttf') format('truetype'); font-weight: 350; }
+        @font-face { font-family: 'NouvelR'; src: url('font-nouvel-r/NouvelRRegular.ttf') format('truetype'); font-weight: 400; }
+        @font-face { font-family: 'NouvelR'; src: url('font-nouvel-r/NouvelRSemibold.ttf') format('truetype'); font-weight: 600; }
+        @font-face { font-family: 'NouvelR'; src: url('font-nouvel-r/NouvelRBold.ttf') format('truetype'); font-weight: 700; }
+        @font-face { font-family: 'NouvelR'; src: url('font-nouvel-r/NouvelRExtrabold.ttf') format('truetype'); font-weight: 800; }
+
+        /* Konfigurace Tailwind Tématu */
+        @theme {
+            --font-sans: "NouvelR", "Open Sans", ui-sans-serif, system-ui;
+        }
+
+        /* Vlastní komponenty a globální styly */
+        @layer components {
+            .container-shell {
+                width: calc(100% - 4rem);
+                margin-left: auto;
+                margin-right: auto;
+                max-width: 76rem;
+            }
+            .cta-button {
+                display: inline-block; /* Aby správně fungoval padding u <a> */
+                background: black;
+                color: white;
+                padding: 1rem 2rem;
+                margin: 1rem;
+                transition: opacity 0.2s;
+            }
+            .cta-button:hover {
+                opacity: 0.8;
+            }
+        }
+
+        @layer base {
+            * { position: relative; }
+            html { font-size: 16px; scroll-behavior: smooth; }
+            body { font-family: "NouvelR", sans-serif; }
+            h1 { font-size: 2.5rem; font-weight: 800; }
+            h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; }
+        }
+    </style>
+</head>
+
+<body class="bg-white text-slate-900">
+
+    <header>
+        <div class="flex bg-black">
+            <div class="container-shell h-8 flex items-center">
+                <a class="text-white text-sm leading-none" href="#">Nový článek: Může čmelák létat?</a>
+            </div>
+        </div>
+
+        <nav class="border-b border-slate-200 backdrop-blur-sm sticky top-0 z-50 bg-white/80">
+            <div class="container-shell h-20 grid grid-cols-3 items-center">
+                
+                <div class="flex justify-start">
+                    <a href="#">
+                        <img src="logo/Aero_Academy-logo-text_black.png" alt="Aero Academy" class="h-4 md:h-8"/>
+                    </a>
+                </div>
+
+                <ul class="hidden md:flex justify-center space-x-2 whitespace-nowrap">
+                    <li><a class="px-4 py-2 hover:text-blue-600 transition" href="#">Výcviky</a></li>
+                    <li><a class="px-4 py-2 hover:text-blue-600 transition" href="#">Flotila</a></li>
+                    <li><a class="px-4 py-2 hover:text-blue-600 transition" href="#">Náš tým</a></li>
+                    <li><a class="px-4 py-2 hover:text-blue-600 transition" href="#">Magazín</a></li>
+                    <li><a class="px-4 py-2 hover:text-blue-600 transition" href="#">Kontakt</a></li>
+                </ul>
+
+                <div class="flex justify-end">
+                    <a class="cta-button !m-0" href="#">Zkušební let</a>
+                </div>
+
+            </div>
+        </nav>
+    </header>
+
+    <main class="container-shell py-16">
+        <div class="flex flex-col justify-center items-center mb-16 text-center">
+            <h1 class="mb-6">Pilotní výcvik Praha Letňany</h1>
+            <img src="logo/Aero_Academy-logo-final.png" alt="Aero Academy" class="max-w-xs"/>
+            <ul class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8 border-t border-slate-100 pt-8">
+                <li class="font-bold">160+ Absolventů</li>
+                <li class="font-bold">4 Typy průkazů</li>
+                <li class="font-bold">8 Letadel ve flotile</li>
+                <li class="font-bold">Praha Letňany</li>
+            </ul>
+        </div>
+
+        <div class="grid grid-cols-12 gap-8">
+            <article class="col-span-12 lg:col-span-8 bg-white p-8 shadow-sm border border-slate-100">
+
+                <section class="mb-12">
+                    <p class="text-xl mb-4">Chceš se naučit řídit letadlo?</p>
+                    <p class="text-slate-600 mb-6">Začít je jednodušší než si myslíš. Nabízíme výcvik pro všechny typy průkazů — od prvního letu až po profesionálního pilota.</p>
+                    <a href="#" class="cta-button !ml-0">Kontaktuj nás</a>
+                </section>
+
+                <section class="mb-12">
+                    <h2>Výcvikové programy</h2>
+                    <ul class="space-y-2 list-disc list-inside text-blue-600 font-semibold">
+                        <li>ULL</li>
+                        <li>PLL</li>
+                        <li>LAPL</li>
+                        <li>CPL</li>
+                    </ul>
+                </section>
+
+                <section class="mb-12 p-8 bg-slate-50 italic border-l-4 border-black">
+                    <p class="text-lg">„Létání není jen způsob dopravy, je to pohled na svět: V oblacích jsi nad věcí.“</p>
+                </section>
+
+                <section class="mb-12">
+                    <h2>Naše flotila</h2>
+                    <div class="grid grid-cols-2 gap-2 text-slate-700">
+                        <div>ALTO NG Gold</div>
+                        <div>ALTO NG Blue</div>
+                        <div>ALTO NG Grey</div>
+                        <div>Bristell LSA</div>
+                        <div>Bristell B23 Red</div>
+                        <div>Bristell B23</div>
+                        <div>CESSNA C172SP</div>
+                        <div>Cirrus SR20</div>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Proč si vybrat Aero Academy</h2>
+                    <ul class="space-y-4">
+                        <li class="flex items-center gap-2">✓ Protože je s námi sranda</li>
+                        <li class="flex items-center gap-2">✓ Protože to umíme</li>
+                        <li class="flex items-center gap-2">✓ Protože máme super letadla</li>
+                    </ul>
+                </section>
+            </article>
+
+            <aside class="col-span-12 lg:col-span-4 space-y-8">
+
+                <section class="bg-slate-900 text-white p-8 shadow-sm">
+                    <p class="uppercase tracking-widest text-sm mb-2 text-blue-400">Udělej první krok</p>
+                    <p class="text-2xl font-bold mb-4">Zkušební let.<br>Nic tě nezavazuje.</p>
+                    <p class="text-slate-300 mb-6">Vyzkoušej, jaké to je usednout za knipl. Instruktor tě provede každým krokem — v bezpečí a bez stresu.</p>
+                    <a href="#" class="cta-button !m-0 block text-center bg-white text-black">Rezervovat let</a>
+                </section>
+
+                <section class="bg-slate-50 p-8 shadow-sm border border-slate-100">
+                    <h2>Magazín</h2>
+                    <ul class="space-y-4">
+                        <li><a href="#" class="hover:text-blue-600 transition block font-medium">Cesta do kokpitu dopravního letadla</a></li>
+                        <li><a href="#" class="hover:text-blue-600 transition block font-medium">Může čmelák létat?</a></li>
+                        <li><a href="#" class="hover:text-blue-600 transition block font-medium">Jak létat v TRA GA Letňany?</a></li>
+                    </ul>
+                </section>
+
+            </aside>
+        </div>
+
+    </main>
+
+    <footer class="bg-black py-12 mt-16">
+        <div class="container-shell">
+            <p class="text-white text-sm">© 2026 Aero Academy. Všechna práva vyhrazena.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
