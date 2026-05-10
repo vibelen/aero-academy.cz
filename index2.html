@@ -264,24 +264,26 @@
 
 <!-- ══ TOP INFO BAR ══ -->
 <div style="background:#1a1a1a;height:36px;display:flex;align-items:center;border-bottom:1px solid #333333;">
-    <div class="shell flex items-center gap-3 w-full" style="height:36px;">
+    <div class="shell" style="height:36px;display:grid;grid-template-columns:1fr 1fr;">
 
-        <span style="flex-shrink:0;font-size:0.72rem;font-weight:800;letter-spacing:0.20em;text-transform:uppercase;color:#ffffff;">Aktuality</span>
-        <span style="width:1px;height:14px;background:#333333;flex-shrink:0;"></span>
-
-        <div class="ticker-wrap">
-            <div class="ticker-track">
-                <a href="#" class="ticker-link">Nový Bristell LSA ve flotile — nejnovější typ dostupný od dubna&nbsp;2026</a>
-                <a href="#" class="ticker-link">Zkušební let s instruktorem — rezervujte online i na poslední&nbsp;chvíli</a>
-                <a href="#" class="ticker-link">Výcvik PPL(A) — zahájení nové skupiny. Kontaktujte nás ještě&nbsp;dnes.</a>
-                <a href="#" class="ticker-link">Nový Bristell LSA ve flotile — nejnovější typ dostupný od dubna&nbsp;2026</a>
-                <a href="#" class="ticker-link">Zkušební let s instruktorem — rezervujte online i na poslední&nbsp;chvíli</a>
-                <a href="#" class="ticker-link">Výcvik PPL(A) — zahájení nové skupiny. Kontaktujte nás ještě&nbsp;dnes.</a>
+        <!-- Levá polovina: Aktuality + ticker -->
+        <div style="display:flex;align-items:center;gap:0.75rem;overflow:hidden;">
+            <span style="flex-shrink:0;font-size:0.72rem;font-weight:800;letter-spacing:0.20em;text-transform:uppercase;color:#ffffff;">Aktuality</span>
+            <span style="width:1px;height:14px;background:#333333;flex-shrink:0;"></span>
+            <div class="ticker-wrap">
+                <div class="ticker-track">
+                    <a href="#" class="ticker-link">Nový Bristell LSA ve flotile — nejnovější typ dostupný od dubna&nbsp;2026</a>
+                    <a href="#" class="ticker-link">Zkušební let s instruktorem — rezervujte online i na poslední&nbsp;chvíli</a>
+                    <a href="#" class="ticker-link">Výcvik PPL(A) — zahájení nové skupiny. Kontaktujte nás ještě&nbsp;dnes.</a>
+                    <a href="#" class="ticker-link">Nový Bristell LSA ve flotile — nejnovější typ dostupný od dubna&nbsp;2026</a>
+                    <a href="#" class="ticker-link">Zkušební let s instruktorem — rezervujte online i na poslední&nbsp;chvíli</a>
+                    <a href="#" class="ticker-link">Výcvik PPL(A) — zahájení nové skupiny. Kontaktujte nás ještě&nbsp;dnes.</a>
+                </div>
             </div>
         </div>
 
-        <span style="width:1px;height:14px;background:#333333;flex-shrink:0;"></span>
-        <div style="display:flex;align-items:center;gap:0.875rem;flex-shrink:0;">
+        <!-- Pravá polovina: telefon + email -->
+        <div style="display:flex;align-items:center;justify-content:flex-end;gap:0.875rem;">
             <a href="tel:+420607077373" style="color:rgba(255,255,255,0.45);font-size:0.72rem;text-decoration:none;display:flex;align-items:center;gap:0.35rem;transition:color 0.2s;white-space:nowrap;" onmouseover="this.style.color='#ffffff'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">
                 <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.07 13 19.79 19.79 0 0 1 1 4.18 2 2 0 0 1 2.96 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 17z"/></svg>
                 +420&nbsp;607&nbsp;077&nbsp;373
@@ -292,6 +294,7 @@
                 info@aero-academy.cz
             </a>
         </div>
+
     </div>
 </div>
 
@@ -312,7 +315,7 @@
 
         <div class="flex items-center gap-3" style="justify-self:end;">
             <a href="#zl" class="btn-cta">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                <img src="graphic-elements/paper-airplane/paper-airplane.svg" style="width:15px;height:15px;filter:brightness(0) invert(1);"/>
                 Zkušební let
             </a>
             <button onclick="document.getElementById('mob-nav').classList.toggle('hidden')" class="lg:hidden p-2 flex flex-col gap-1.5" aria-label="Menu" style="background:none;border:none;cursor:pointer;">
@@ -335,7 +338,7 @@
 </header>
 
 <!-- ══ HERO ══ -->
-<section style="height:calc(100vh - 132px);display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;background:#ffffff;border-bottom:1px solid #e6e6e6;">
+<section style="height:calc(100vh - 132px);display:flex;flex-direction:column;justify-content:center;overflow:hidden;background:#ffffff;border-bottom:1px solid #e6e6e6;">
 
     <div style="position:absolute;top:0;left:0;right:0;z-index:2;">
         <div class="shell" style="display:flex;justify-content:flex-end;align-items:flex-start;">
@@ -354,7 +357,7 @@
 
         <div class="flex flex-wrap gap-4 mb-8" data-aos="fade-up" data-aos-delay="280">
             <a href="#zl" class="btn-cta">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                <img src="graphic-elements/paper-airplane/paper-airplane.svg" style="width:15px;height:15px;filter:brightness(0) invert(1);"/>
                 Rezervovat zkušební let
             </a>
             <a href="#vycviky" style="display:inline-flex;align-items:center;gap:0.5rem;font-family:'NouvelR',sans-serif;font-weight:700;font-size:0.8rem;letter-spacing:0.06em;text-transform:uppercase;padding:0.875rem 1.75rem;border:1.5px solid #cccccc;color:#4d4d4d;text-decoration:none;transition:border-color 0.2s,color 0.2s;" onmouseover="this.style.borderColor='#1a1a1a';this.style.color='#1a1a1a'" onmouseout="this.style.borderColor='#cccccc';this.style.color='#4d4d4d'">
@@ -575,7 +578,7 @@
                             </div>
                             <a href="#" class="btn-adriatic" style="align-self:flex-end;">
                                 Prohlédnout flotilu
-                                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                                <img src="graphic-elements/paper-airplane/paper-airplane.svg" style="width:15px;height:15px;filter:brightness(0) invert(1);"/>
                             </a>
                         </div>
 
@@ -658,7 +661,7 @@
 
                         <a href="tel:+420607077373" class="btn-inv" style="width:100%;justify-content:center;font-size:0.82rem;">
                             Rezervovat zkušební let
-                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                            <img src="graphic-elements/paper-airplane/paper-airplane.svg" style="width:15px;height:15px;filter:brightness(0) invert(1);"/>
                         </a>
 
                         <div style="margin-top:0.875rem;text-align:center;">
