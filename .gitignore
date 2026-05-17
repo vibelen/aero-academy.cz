@@ -5,5 +5,14 @@
 !index2.html
 !claude.md
 !.gitignore
+!CLAUDE.md
 
-# Ale udělej výjimku pro tyto soubory
+# Složky
+!photo/
+!photo/**
+!logo/
+!logo/**
+!font-nouvel-r/
+!font-nouvel-r/**
+!graphic-elements/
+!graphic-elements/**
