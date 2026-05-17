@@ -247,6 +247,20 @@
         .scroll-cue { animation:cue 2.2s ease-in-out infinite; }
         @keyframes cue { 0%,100%{transform:translateY(0)} 50%{transform:translateY(7px)} }
 
+        /* ── HERO CROSSFADE ── */
+        @keyframes heroSlide1 {
+            0%, 45%  { opacity:1; }
+            50%, 95% { opacity:0; }
+            100%     { opacity:1; }
+        }
+        @keyframes heroSlide2 {
+            0%, 45%  { opacity:0; }
+            50%, 95% { opacity:1; }
+            100%     { opacity:0; }
+        }
+        .hero-bg1 { position:absolute;inset:0;background-image:url('photo/hero_aa_symbol_fin.jpg');background-size:cover;background-position:center top;z-index:0;animation:heroSlide1 12s ease-in-out infinite; }
+        .hero-bg2 { position:absolute;inset:0;background-image:url('photo/hero_srdce_fin.jpg');background-size:cover;background-position:center top;z-index:0;animation:heroSlide2 12s ease-in-out infinite; }
+
         /* ── HOVER LINK ── */
         .hl { color:#1a1a1a; text-decoration:none; transition:color 0.2s; }
         .hl:hover { color:#666666; }
@@ -339,7 +353,11 @@
 </header>
 
 <!-- ══ HERO ══ -->
-<section style="height:calc(100vh - 132px);display:flex;flex-direction:column;justify-content:center;overflow:hidden;background-image:url('photo/hero_aa_symbol_.jpg');background-size:cover;background-position:center top;padding-bottom:16rem;">
+<section style="height:calc(100vh - 132px);display:flex;flex-direction:column;justify-content:center;overflow:hidden;padding-bottom:16rem;">
+
+    <!-- Hero pozadí — crossfade -->
+    <div class="hero-bg1"></div>
+    <div class="hero-bg2"></div>
 
     <!-- gradient overlay pro čitelnost -->
     <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(255,255,255,0.10) 0%,rgba(0,0,0,0.08) 55%,rgba(0,0,0,0.30) 100%);z-index:1;"></div>
